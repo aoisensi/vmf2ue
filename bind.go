@@ -6,8 +6,11 @@ import (
 )
 
 var bind struct {
-	Materials       map[string]string `json:"materials"`
-	DefaultMaterial string            `json:"default_material"`
+	Materials map[string]struct {
+		Asset string `json:"asset"`
+		W     int    `json:"w"`
+		H     int    `json:"h"`
+	} `json:"materials"`
 }
 
 func readBind() {

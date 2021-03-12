@@ -12,6 +12,8 @@ type Side struct {
 	Plane    [3][3]float64
 	Material string
 	DispInfo *DispInfo
+	UAxis    [5]float64
+	VAxis    [5]float64
 }
 
 func newSide(node vmf.Node) *Side {
@@ -32,5 +34,15 @@ func newSide(node vmf.Node) *Side {
 	if node.HasProperty("dispinfor") {
 		side.DispInfo = newDispInfo(node.GetChildrenByKey("dispinfo")[0])
 	}
+	fmt.Sscanf(
+		node.GetProperty("uaxis"),
+		"[%v %v %v %v] %v",
+		&side.UAxis[0], &side.UAxis[1], &side.UAxis[2], &side.UAxis[3], &side.UAxis[4],
+	)
+	fmt.Sscanf(
+		node.GetProperty("vaxis"),
+		"[%v %v %v %v] %v",
+		&side.VAxis[0], &side.VAxis[1], &side.VAxis[2], &side.VAxis[3], &side.VAxis[4],
+	)
 	return side
 }

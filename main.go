@@ -24,19 +24,16 @@ func main() {
 
 	//brush
 	for _, solid := range level.World.Solids {
-		writeBegin("Actor", "Class=/Script/Engine.Brush Name=Solid%v", solid.ID)
-		writeBegin("Brush", "Name=Model_%v", solid.ID)
+
 		writePolyList(solid)
-		writeEnd()
-		writef("Brush=Model'\"Model_%v\"'", solid.ID)
-		writef("ActorLabel=\"Solid%v\"", solid.ID)
-		writeEnd()
 	}
 	writeEnd()
 	writeEnd()
 }
 
 func writePolyList(solid *vmf.Solid) {
+	writeBegin("Actor", "Class=/Script/Engine.Brush Name=Solid%v", solid.ID)
+	writeBegin("Brush", "Name=Model_%v", solid.ID)
 	intersection := func(a, b, c Plane) *Vec3 {
 		denom := a.V.Dot(b.V.Cross(c.V))
 		if -0.000001 < denom && denom < 0.000001 {
@@ -50,12 +47,22 @@ func writePolyList(solid *vmf.Solid) {
 	}
 
 	writeBegin("PolyList", "")
+	type Side struct {
+		plane    Plane
+		material string
+	}
 	faces := make([]Plane, len(solid.Sides))
 	for i, side := range solid.Sides {
 		faces[i] = PlaneFromPoints(side.Plane[0], side.Plane[1], side.Plane[2])
 	}
 	for i, faceI := range faces {
-		writeBegin("Polygon", "")
+		side := solid.Sides[i]
+		material, materialOk := bind.Materials[strings.ToLower(side.Material)]
+		polyOpt := ""
+		if materialOk {
+			polyOpt = "Texture=" + material.Asset
+		}
+		writeBegin("Polygon", polyOpt)
 		verteces := make([]Vec3, 0, 16)
 		for j, faceJ := range faces {
 			if i == j {
@@ -111,8 +118,23 @@ func writePolyList(solid *vmf.Solid) {
 		for _, v := range verteces {
 			writef("Vertex   %+013.6f,%+013.6f,%+013.6f", v[1]*scale, v[0]*scale, v[2]*scale)
 		}
+		if materialOk {
+			uvu := Vec3{side.UAxis[0], side.UAxis[1], side.UAxis[2]}
+			tu := uvu.Mul(64 / float64(material.W) / side.UAxis[4])
+			uvv := Vec3{side.VAxis[0], side.VAxis[1], side.VAxis[2]}
+			tv := uvv.Mul(64 / float64(material.H) / side.VAxis[4])
+			writef("TextureU %+013.6f,%+013.6f,%+013.6f", tu[1]/1.0, tu[0]/1.0, tu[2]/1.0)
+			writef("TextureV %+013.6f,%+013.6f,%+013.6f", tv[1]/1.0, tv[0]/1.0, tv[2]/1.0)
+			or := tu.Mul(side.UAxis[3] * float64(material.W) / -512.0).Add(tv.Mul(side.VAxis[3] * float64(material.H) / -512))
+			writef("Origin   %+013.6f,%+013.6f,%+013.6f", or[1], or[0], or[2]) //side.VAxis[3])
+		}
 		writeEnd()
 	}
+	writeEnd()
+	writeEnd()
+	writef("Brush=Model'\"Model_%v\"'", solid.ID)
+	writef("ActorLabel=\"Solid%v\"", solid.ID)
+	writef("FolderPath=\"Solids\"")
 	writeEnd()
 }
 
