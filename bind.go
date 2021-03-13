@@ -11,6 +11,9 @@ var bind struct {
 		W     int    `json:"w"`
 		H     int    `json:"h"`
 	} `json:"materials"`
+	Props map[string]struct {
+		Asset string `json:"asset"`
+	} `json:"props"`
 }
 
 func readBind() {

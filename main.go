@@ -6,12 +6,14 @@ import (
 	"strings"
 
 	"github.com/aoisensi/vmf2ue/vmf"
+	cprint "github.com/fatih/color"
 )
 
 var out *os.File
 var nest = make([]string, 0, 16)
 
-const scale = 2.0
+const SCALE = 2.0
+const BRIGHTNESS = 16.0
 
 func main() {
 	file, _ := os.Open(os.Args[1])
@@ -24,14 +26,28 @@ func main() {
 
 	//brush
 	for _, solid := range level.World.Solids {
-
 		writePolyList(solid)
 	}
+
+	for _, entity := range level.Entities {
+		writeEntity(entity)
+	}
+
 	writeEnd()
 	writeEnd()
 }
 
 func writePolyList(solid *vmf.Solid) {
+	for _, side := range solid.Sides {
+		material := strings.ToLower(side.Material)
+		if strings.HasPrefix(material, "tools/") {
+			if material == "tools/toolsnodraw" {
+				continue
+			}
+			return
+		}
+	}
+
 	writeBegin("Actor", "Class=/Script/Engine.Brush Name=Solid%v", solid.ID)
 	writeBegin("Brush", "Name=Model_%v", solid.ID)
 	intersection := func(a, b, c Plane) *Vec3 {
@@ -61,6 +77,11 @@ func writePolyList(solid *vmf.Solid) {
 		polyOpt := ""
 		if materialOk {
 			polyOpt = "Texture=" + material.Asset
+		} else {
+			if _, warned := unknownMaterials[side.Material]; !warned {
+				unknownMaterials[side.Material] = struct{}{}
+				cprint.Yellow("Unknown material detect: \"%v\" ID: %v", side.Material, side.ID)
+			}
 		}
 		writeBegin("Polygon", polyOpt)
 		verteces := make([]Vec3, 0, 16)
@@ -116,7 +137,7 @@ func writePolyList(solid *vmf.Solid) {
 		}
 
 		for _, v := range verteces {
-			writef("Vertex   %+013.6f,%+013.6f,%+013.6f", v[1]*scale, v[0]*scale, v[2]*scale)
+			writef("Vertex   %+013.6f,%+013.6f,%+013.6f", v[1]*SCALE, v[0]*SCALE, v[2]*SCALE)
 		}
 		if materialOk {
 			uvu := Vec3{side.UAxis[0], side.UAxis[1], side.UAxis[2]}

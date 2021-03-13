@@ -31,8 +31,9 @@ func newSide(node vmf.Node) *Side {
 		&side.Plane[2][0], &side.Plane[2][1], &side.Plane[2][2],
 	)
 	side.Material = node.GetProperty("material")
-	if node.HasProperty("dispinfor") {
-		side.DispInfo = newDispInfo(node.GetChildrenByKey("dispinfo")[0])
+	dispInfo := node.GetChildrenByKey("dispinfo")
+	if len(dispInfo) == 1 {
+		side.DispInfo = newDispInfo(dispInfo[0])
 	}
 	fmt.Sscanf(
 		node.GetProperty("uaxis"),

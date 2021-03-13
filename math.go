@@ -1,10 +1,19 @@
 package main
 
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
 const EPS = 0.000001
 
 type Vec3 [3]float64
+
+func ParseVec3(text string) Vec3 {
+	v := Vec3{}
+	fmt.Sscanf(text, "%f %f %f", &v[0], &v[1], &v[2])
+	return v
+}
 
 func (x Vec3) Add(y Vec3) Vec3 {
 	return Vec3{x[0] + y[0], x[1] + y[1], x[2] + y[2]}
