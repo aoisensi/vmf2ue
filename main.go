@@ -63,10 +63,6 @@ func writePolyList(solid *vmf.Solid) {
 	}
 
 	writeBegin("PolyList", "")
-	type Side struct {
-		plane    Plane
-		material string
-	}
 	faces := make([]Plane, len(solid.Sides))
 	for i, side := range solid.Sides {
 		faces[i] = PlaneFromPoints(side.Plane[0], side.Plane[1], side.Plane[2])
@@ -186,15 +182,4 @@ func writeEnd() {
 	nest = nest[:l]
 	writeNest()
 	fmt.Fprintln(out, "End "+name)
-}
-
-func calcPlane(plane [3][3]float64) (r [4]Vec3) {
-	r[0] = plane[0]
-	r[1] = plane[1]
-	r[2] = plane[2]
-	r[0][1] *= -1
-	r[1][1] *= -1
-	r[2][1] *= -1
-	r[3] = r[0].Sub(r[1]).Add(r[2])
-	return
 }

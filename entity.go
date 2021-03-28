@@ -18,6 +18,9 @@ func writeEntity(entity vmf.Entity) {
 			team := map[string]string{
 				"": "None", "1": "None", "2": "Red", "3": "Blue",
 			}[entity.String("TeamNum")]
+			if entity.String("StartDisabled") == "1" {
+				team = "None"
+			}
 			writef("Team=%v", team)
 		}
 		writeBegin("Object", "Name=\"Capsule\"")
@@ -53,7 +56,7 @@ func writeEntity(entity vmf.Entity) {
 		writeEnd()
 		return
 	}
-	if class == "light_environment" {
+	if class == "light_environment//ignore" { //ignore
 		writeBegin("Actor", "Class=/Script/Engine.SkyLight Name=SkyLight_%v", id)
 		writeBegin("Object", "Name=\"SkyLightComponent0\"")
 		writef("CastShadow=False")
