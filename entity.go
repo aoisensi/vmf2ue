@@ -12,13 +12,13 @@ func writeEntity(entity vmf.Entity) {
 	class := entity["classname"].(string)
 	id, _ := strconv.Atoi(entity["id"].(string))
 
-	if class == "info_player_teamspawn" {
+	if class == "info_player_teamspawn" && hasOnly("spawn") {
 		writeBegin("Actor", "Class=/Game/Unreal4tress/Core/GameModes/Common/BP_PlayerStart.BP_PlayerStart_C Name=BP_PlayerStart_%v", id)
 		if entity.Has("TeamNum") {
 			team := map[string]string{
 				"": "None", "1": "None", "2": "Red", "3": "Blue",
 			}[entity.String("TeamNum")]
-			if entity.String("StartDisabled") == "1" {
+			if entity.Has("StartDisabled") {
 				team = "None"
 			}
 			writef("Team=%v", team)
@@ -32,7 +32,7 @@ func writeEntity(entity vmf.Entity) {
 		writeEnd()
 		return
 	}
-	if class == "prop_static" {
+	if class == "prop_static" && hasOnly("mesh") {
 		model := entity.String("model")
 		asset, assetOk := bind.Props[model]
 		if !assetOk {
@@ -46,11 +46,11 @@ func writeEntity(entity vmf.Entity) {
 		name := strings.Split(asset.Asset, ".")[1]
 		writeBegin("Actor", "Class=/Script/Engine.StaticMeshActor Name=%v_%v", name, id)
 		writeBegin("Object", "Name=\"StaticMeshComponent0\"")
-		writef("StaticMesh=%v", name)
+		writef("StaticMesh='\"%v\"'", asset.Asset)
 		writeOrigin(entity, nil)
 		writeAngles(entity, nil)
 		writeEnd()
-		writef("ActorLabel=\"%v\"", name)
+		writef("ActorLabel=\"%v_%v\"", name, id)
 		writef("FolderPath=\"Props\"")
 		writef("StaticMeshes=\"Solids\"")
 		writeEnd()
@@ -67,18 +67,18 @@ func writeEntity(entity vmf.Entity) {
 		writeEnd()
 		return
 	}
-	if class == "light_spot" {
+	if class == "light_spot" && hasOnly("light") {
 		writeBegin("Actor", "Class=/Script/Engine.SpotLight Name=SpotLight_%v", id)
 		writeBegin("Object", "Name=\"LightComponent0\"")
 		innerConeAngle := entity.Float("_inner_cone")
-		writef("InnerConeAngle=%f.6", innerConeAngle)
+		writef("InnerConeAngle=%.6f", innerConeAngle)
 		outerConeAngle := entity.Float("_cone")
-		writef("outerConeAngle=%f.6", outerConeAngle)
+		writef("outerConeAngle=%.6f", outerConeAngle)
 		attenuationRadius := 0.0
 		if entity.Has("_zero_percent_distance") {
 			attenuationRadius = entity.Float("_zero_percent_distance")
 		}
-		writef("AttenuationRadius=%f.6", attenuationRadius*SCALE)
+		writef("AttenuationRadius=%.6f", attenuationRadius*SCALE)
 		color := entity.FloatSlice("_light")
 		writef("Intensity=%.6f", color[3]*BRIGHTNESS)
 		writef("LightColor=(R=%.0f,G=%.0f,B=%.0f,A=255)", color[0], color[1], color[2])
@@ -94,7 +94,7 @@ func writeEntity(entity vmf.Entity) {
 		return
 	}
 	if _, skip := skipClasses[class]; !skip {
-		if _, warned := unknownClasses[class]; !warned {
+		if _, warned := unknownClasses[class]; !warned && only == "" {
 			unknownClasses[class] = struct{}{}
 			cprint.Yellow("Unknown entity class detect: \"%v\" ID: %v", class, id)
 		}

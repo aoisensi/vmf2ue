@@ -6,11 +6,13 @@ import (
 )
 
 var bind struct {
-	Materials map[string]struct {
-		Asset string `json:"asset"`
-		W     int    `json:"w"`
-		H     int    `json:"h"`
-	} `json:"materials"`
+	/*
+		Materials map[string]struct {
+			Asset string `json:"asset"`
+			W     int    `json:"w"`
+			H     int    `json:"h"`
+		} `json:"materials"`
+	*/
 	Props map[string]struct {
 		Asset string `json:"asset"`
 	} `json:"props"`

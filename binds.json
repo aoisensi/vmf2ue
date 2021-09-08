@@ -104,6 +104,144 @@
         },
         "models/props_hydro/3pipe_straight_256.mdl": {
             "asset": "/Game/Unreal4tress/World/Props/Hydro/S_3PipeStraight256.S_3PipeStraight256"
+        },
+        "models/props_well/hand_truck01.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Well/S_HandTruck01.S_HandTruck01"
+        },
+        "models/props_well/computer_cart02.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Well/S_ComputerCart02.S_ComputerCart02"
+        },
+
+        "models/props_spytech/spytech_hanging_light_52.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Spytech/S_SpytechHangingLight52.S_SpytechHangingLight52"
+        },
+        "models/props_spytech/vent_system_straight_128.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Spytech/S_VentSystemStraight128.S_VentSystemStraight128"
+        },
+        "models/props_spytech/vent_system_vent01.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Spytech/S_VentSystemVent01.S_VentSystemVent01"
+        },
+        "models/props_spytech/vent_system_corner.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Spytech/S_VentSystemCorner.S_VentSystemCorner"
+        },
+        "models/props_spytech/fire_bell01.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Spytech/S_FireBell01.S_FireBell01"
+        },
+        "models/props_spytech/security_camera_bracket.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Spytech/S_SecurityCameraBracket.S_SecurityCameraBracket"
+        },
+        "models/props_spytech/security_camera.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Spytech/S_SecurityCamera.S_SecurityCamera"
+        },
+        "models/props_spytech/intercom.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Spytech/S_Intercom.S_Intercom"
+        },
+        "models/props_spytech/exit_mounted.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Spytech/S_ExitMounted.S_ExitMounted"
+        },
+        "models/props_spytech/vent.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Spytech/S_Vent.S_Vent"
+        },
+        "models/props_spytech/siren.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Spytech/S_Siren.S_Siren"
+        },
+        "models/props_spytech/chair.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Spytech/S_Chair.S_Chair"
+        },
+        "models/props_spytech/computer_wall_cabinet.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Spytech/S_ComputerWallCabinet.S_ComputerWallCabinet"
+        },
+        "models/props_spytech/computer_wall.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Spytech/S_ComputerWall.S_ComputerWall"
+        },
+        "models/props_spytech/computer_wall02.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Spytech/S_ComputerWall02.S_ComputerWall02"
+        },
+
+        "models/props_mining/ceiling_pipe_64_thick.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Mining/S_CeilingPipe64Thick.S_CeilingPipe64Thick"
+        },
+        "models/props_mining/ceiling_pipe02_thick.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Mining/S_CeilingPipe02Thick.S_CeilingPipe02Thick"
+        },
+        "models/props_mining/ceiling_pipe_128_thick.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Mining/S_CeilingPipe128Thick.S_CeilingPipe128Thick"
+        },
+        "models/props_mining/industrial_pipe01_256_01.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Mining/S_IndustrialPipe01_256_01.S_IndustrialPipe01_256_01"
+        },
+        "models/props_mining/industrial_pipe01_128_01.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Mining/S_IndustrialPipe01_128_01.S_IndustrialPipe01_128_01"
+        },
+        "models/props_mining/ceiling_pipe_16_up.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Mining/S_CeilingPipe16Up.S_CeilingPipe16Up"
+        },
+        "models/props_mining/ceiling_pipe04.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Mining/S_CeilingPipe04.S_CeilingPipe04"
+        },
+        "models/props_mining/ceiling_pipe_128.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Mining/S_CeilingPipe128.S_CeilingPipe128"
+        },
+        "models/props_mining/ceiling_pipe06.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Mining/S_CeilingPipe06.S_CeilingPipe06"
+        },
+
+
+        "models/props_hydro/water_barrel.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Hydro/S_WaterBarrel.S_WaterBarrel"
+        },
+        "models/props_hydro/2pipe_turn_90.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Hydro/S_2PipeTurn90.S_2PipeTurn90"
+        },
+        "models/props_hydro/2pipe_straight_256.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Hydro/S_2PipeStraight256.S_2PipeStraight256"
+        },
+        "models/props_hydro/2pipe_straight_64.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Hydro/S_2PipeStraight64.S_2PipeStraight64"
+        },
+        "models/props_hydro/2pipe_jog_64.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Hydro/S_2PipeJog64.S_2PipeJog64"
+        },
+        "models/props_hydro/2pipe_straight_128.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Hydro/S_2PipeStraight128.S_2PipeStraight128"
+        },
+        "models/props_hydro/3pipe_jog_64.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Hydro/S_3PipeJog64.S_3PipeJog64"
+        },
+
+        "models/props_lights/light_fluorescent_farm.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Lights/S_LightFluorescentFarm.S_LightFluorescentFarm"
+        },
+        "models/props_lights/walllight001a.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Lights/S_Walllight001A.S_Walllight001A"
+        },
+
+        "models/props_gameplay/door_grate002_frame.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Gameplay/S_DoorGrate002Frame.S_DoorGrate002Frame"
+        },
+        "models/props_gameplay/door_grate002_floorplate.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Gameplay/S_DoorGrate002Floorplate.S_DoorGrate002Floorplate"
+        },
+        "models/props_gameplay/security_fence_section01.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Gameplay/S_SecurityFenceSection01.S_SecurityFenceSection01"
+        },
+        "models/props_gameplay/sign_gameplay01.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Gameplay/S_SignGameplay01.S_SignGameplay01"
+        },
+
+        "models/props_trainyard/handrail128.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Trainyard/S_Handrail128.S_Handrail128"
+        },
+
+        "models/props_farm/pallet001.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Farm/S_Pallet001.S_Pallet001"
+        },
+        "models/props_farm/conduit02.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Farm/S_Conduit02.S_Conduit02"
+        },
+        "models/props_farm/conduit_pipe01.mdl": {
+            "asset": "/Game/Unreal4tress/World/Props/Farm/S_ConduitPipe01.S_ConduitPipe01"
         }
+        
     }
 }
